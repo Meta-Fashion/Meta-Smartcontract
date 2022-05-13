@@ -697,8 +697,8 @@ contract MetaFashion is Context, IERC20, Ownable {
     constructor() {
         address newOwner = msg.sender; // update if auto-deploying to a different wallet        
 
-        maxTransactionAmount = _tTotal * 50 / 10000; // 0.5% max txn
-        minimumTokensBeforeSwap = _tTotal * 5 / 10000; // 0.05%
+        maxTransactionAmount = _tTotal * 500 / 100000; // 0.5% max txn
+        minimumTokensBeforeSwap = _tTotal * 50 / 100000; // 0.05%
 
         _rOwned[newOwner] = _rTotal;
 
@@ -1042,15 +1042,15 @@ contract MetaFashion is Context, IERC20, Ownable {
     
     // change the minimum amount of tokens to sell from fees
     function updateSwapTokensAtPercent(uint256 percent) external onlyOwner returns (bool){
-  	    require(percent >= 1, "Swap amount cannot be lower than 0.01% total supply.");
-  	    require(percent <= 50, "Swap amount cannot be higher than 0.5% total supply.");
-  	    minimumTokensBeforeSwap = _tTotal * percent / 10000;
+  	    require(percent >= 1, "Swap amount cannot be lower than 0.001% total supply.");
+  	    require(percent <= 500, "Swap amount cannot be higher than 0.5% total supply.");
+  	    minimumTokensBeforeSwap = _tTotal * percent / 100000;
   	    return true;
   	}
 
     function updateMaxTxnPercent(uint256 percent) external onlyOwner {
-        require(percent >= 10, "Cannot set maxTransactionAmount lower than 0.1%");
-        maxTransactionAmount = _tTotal * percent / 10000;
+        require(percent >= 10, "Cannot set maxTransactionAmount lower than 0.01%");
+        maxTransactionAmount = _tTotal * percent / 100000;
     }
 
     // percent 25 for .25%
